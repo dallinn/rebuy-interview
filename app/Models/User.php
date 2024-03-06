@@ -42,4 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * User Settings
+     */
+    public function settings() {
+        return $this->hasOne(Setting::class);
+    }
+
+    /**
+     * Pomodoro sessions
+     */
+    public function sessions() {
+        return $this->hasMany(Session::class);
+    }
+
 }
