@@ -44,9 +44,14 @@
 ## Quick start
 ### Requirements
 - Docker (Docker Desktop preferred)
+- `Sail` aliased in zshrc / bash_profile / bashrc
+  - If not, then run `./vendor/bin/sail` instead of `sail`
 
 ### Steps to get running
-1) `$ some command todo`
+1) Start the server: `sail up`
+    - If you do not have docker running, `php artisan serve`, but this is untested.
+    - If you did not alias `sail` as explained above this will fail.
+2) Run unit tests: `sail artisan test`
 
 ## Explanation
 ### Framework
