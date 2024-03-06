@@ -42,14 +42,19 @@
 # My Solution
 
 ## Quick start
-- Requirements
-  - Docker (Docker Desktop preferred)
+### Requirements
+- Docker (Docker Desktop preferred)
 
-- Steps to get running
-  - `$ some command todo`
+### Steps to get running
+1) `$ some command todo`
 
 ## Explanation
 ### Framework
 I chose the PHP Laravel framework due to my experience with it and its simplicity for rapid prototyping. Sail - Laravel's default docker env - makes getting started a breeze. 
 
 This might be a little heavy for such small requirements, and I could whip up a "simpler" POC with something like node/express, but this works and sets up a potential future for the app.
+
+### Authentication
+Sanctum - Again, Laravel has many packages that make rapid prototyping easy. 
+
+Sanctum vs Passport: Since we are only doing an API and I'm not going to roll out my own Oauth2 for this (nor use Google/Facebook/etc aka "federated") I decieded to use the lighter Sanctum for token-based auth.
