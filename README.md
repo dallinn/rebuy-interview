@@ -64,9 +64,11 @@ Sanctum - Again, Laravel has many packages that make rapid prototyping easy.
 
 Sanctum vs Passport: Since we are only doing an API and I'm not going to roll out my own Oauth2 for this (nor use Google/Facebook/etc aka "federated") I decieded to use the lighter Sanctum for token-based auth.
 
+### Schema & DB Design
+The DB design is pretty straight forward. A `user` has 1 `settings`, and can have many `sessions`.
+
 ### Timer
 I thought about using laravel's event & queing system to actually implement the timer, ie start session for 25 seconds, wait, then update to done, but I wouldn't do that in real life so I opted to use the excuse "the frontend will handle it."
-
 
 ### Sample Commands
 I could have used Swagger to make this easier and all my microservices at my current position have that, but for simplicity sake here are curl commands:
@@ -114,3 +116,15 @@ curl -X PUT http://localhost/api/settings \
     -H "Content-Type: application/json" \
     -d '{"duration": 25}'
 ```
+
+## Stretch Goals
+I am going to pass on the implemntation of the stretch goals in respect to my own time, but heres how I would go about it:
+
+### Real-time Updates: Use WebSockets or similar technology for instant updates to the frontend when sessions change on the backend.
+Using Laravel's broadcasting (https://laravel.com/docs/10.x/broadcasting) I could implement websockets for real time. The front end could also use pulling. I have a lot of websockets experience and setting up these routes wouldn't be too hard. 
+
+### Advanced Analytics: Calculate productivity metrics over time, or provide tools for users to visualize their work patterns.
+Personally on Laravel projects I have used "Fathom" and of course Google Analytics. Outside of PHP, specifically in my Golang experience, I have used Prometheus+Grafan extensively.
+
+### Team Features: If ambitious, explore multi-user functionality where teams can track progress together.
+This is just a question of relationships. Perhaps a model `team` that has many `users`, and then change the session relationship to many-to-many. Then, using tools such as websockets, the teams could view and modify the timers in real time.
