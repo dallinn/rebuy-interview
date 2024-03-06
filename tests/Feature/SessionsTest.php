@@ -50,7 +50,7 @@ class SessionsTest extends TestCase {
     }
 
     /** @test */
-    public function user_can_retrieve_session_history(){
+    public function user_can_retrieve_session_history() {
         $user = User::factory()->create();
 
         Session::factory()->count(5)->create(['user_id' => $user->id]);
@@ -64,7 +64,5 @@ class SessionsTest extends TestCase {
                     ]
                 ])
                 ->assertJsonCount(5, 'sessions');
-            }
-
-
+    }
 }

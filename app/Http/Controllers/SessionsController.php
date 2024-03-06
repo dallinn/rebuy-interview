@@ -9,8 +9,7 @@ use App\Models\Session;
 /**
  * Pomodoro Session
  */
-class SessionsController extends Controller
-{
+class SessionsController extends Controller {
     /* Start a pomodoro session */
     public function start(Request $request) {
         // Validate incoming request

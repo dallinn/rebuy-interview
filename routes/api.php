@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SettingsController;
 
@@ -17,8 +18,10 @@ use App\Http\Controllers\SettingsController;
 |
 */
 
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/signup', [AuthController::class, 'signup']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    //TODO fix user if needed
     return $request->user();
 });
 

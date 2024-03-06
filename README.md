@@ -63,3 +63,54 @@ Laravel includes a LOT of boilerplate. Which is nice for POCs but for this case 
 Sanctum - Again, Laravel has many packages that make rapid prototyping easy. 
 
 Sanctum vs Passport: Since we are only doing an API and I'm not going to roll out my own Oauth2 for this (nor use Google/Facebook/etc aka "federated") I decieded to use the lighter Sanctum for token-based auth.
+
+### Timer
+I thought about using laravel's event & queing system to actually implement the timer, ie start session for 25 seconds, wait, then update to done, but I wouldn't do that in real life so I opted to use the excuse "the frontend will handle it."
+
+
+### Sample Commands
+I could have used Swagger to make this easier and all my microservices at my current position have that, but for simplicity sake here are curl commands:
+
+
+#### Signup
+```
+curl -X POST http://localhost/api/signup \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{"name": "Some Name", "email": "test@test.com", "password": "password123", "password_confirmation": "password123"}'
+```
+
+#### Login 
+```
+curl -X POST http://localhost/api/login \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{"email": "test@test.com", "password": "password123"}'
+```
+
+#### Create Pomodoro Session
+```
+curl -X POST http://localhost/api/sessions/start \
+    -H "Accept: application/json" \
+    -H "Authorization: Bearer [token_from_signup_or_login]" \
+    -H "Content-Type: application/json" \
+    -d '{"description": "My Pomodoro Session"}'
+```
+
+#### Stop Pomodoro Session
+```
+curl -X POST http://localhost/api/sessions/stop \
+    -H "Accept: application/json" \
+    -H "Authorization: Bearer [token_from_signup_or_login]" \
+    -H "Content-Type: application/json" \
+    -d '{"session_id": 1}'
+```
+
+#### Update User Settings
+```
+curl -X PUT http://localhost/api/settings \
+    -H "Accept: application/json" \
+    -H "Authorization: Bearer [token_from_signup_or_login]" \
+    -H "Content-Type: application/json" \
+    -d '{"duration": 25}'
+```
