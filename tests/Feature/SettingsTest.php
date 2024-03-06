@@ -7,19 +7,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
-class SettingsTest extends TestCase
-{
+class SettingsTest extends TestCase {
     use RefreshDatabase;
 
-    public function test_example(): void
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
-    public function user_can_update_settings()
-    {
+    /** @test */
+    public function user_can_update_settings() {
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->putJson('/api/settings', [
@@ -29,8 +21,8 @@ class SettingsTest extends TestCase
         $response->assertStatus(200);
 
         $this->assertDatabaseHas('settings', [
-            'user_id' => $user->id,
-            'pomodoro_duration' => 30,
+            'user_id'           => $user->id,
+            'duration' => 30,
         ]);
     }
 }

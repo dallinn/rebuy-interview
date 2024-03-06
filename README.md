@@ -51,13 +51,13 @@
 1) Start the server: `sail up`
     - If you do not have docker running, `php artisan serve`, but this is untested.
     - If you did not alias `sail` as explained above this will fail.
-2) Run unit tests: `sail artisan test`
+2) Run tests: `sail artisan test`
 
 ## Explanation
 ### Framework
 I chose the PHP Laravel framework due to my experience with it and its simplicity for rapid prototyping. Sail - Laravel's default docker env - makes getting started a breeze. 
 
-This might be a little heavy for such small requirements, and I could whip up a "simpler" POC with something like node/express, but this works and sets up a potential future for the app.
+Laravel includes a LOT of boilerplate. Which is nice for POCs but for this case might be a little heavy. I could whip up a "simpler" POC with something like node/express, but this works and sets up a potential future for the app.
 
 ### Authentication
 Sanctum - Again, Laravel has many packages that make rapid prototyping easy. 

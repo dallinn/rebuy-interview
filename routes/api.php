@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\SettingsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     //TODO fix user if needed
     return $request->user();
+});
 
+
+Route::middleware('auth:sanctum')->group(function () {
     /* Sessions */
     Route::post('/sessions/start',  [SessionsController::class, 'start']);
     Route::post('/sessions/stop',   [SessionsController::class, 'stop']);
