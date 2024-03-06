@@ -15,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    //TODO fix user if needed
     return $request->user();
+
+    /* Sessions */
+    Route::post('/sessions/start',  [SessionsController::class, 'start']);
+    Route::post('/sessions/stop',   [SessionsController::class, 'stop']);
+    Route::get('/sessions/history', [SessionsController::class, 'history']);
+
+    /* Settings */
+    Route::put('/settings', [SettingsController::class, 'update']);
 });
