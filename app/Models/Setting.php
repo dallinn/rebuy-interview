@@ -16,8 +16,7 @@ class Setting extends Model
 
     protected $casts = [];
 
-
-    // Get the setting's owner
+    // The setting's owner
     public function user()
     {
         return $this->belongsTo(User::class);

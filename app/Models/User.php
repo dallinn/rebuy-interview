@@ -43,6 +43,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected static function booted()
+    {
+        // Automatically create settings
+        static::created(function ($user) {
+            $user->settings()->create([
+                'duration' => 25,
+            ]);
+        });
+    }
+
     /**
      * User Settings
      */
